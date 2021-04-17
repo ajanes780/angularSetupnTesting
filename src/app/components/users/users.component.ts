@@ -8,6 +8,8 @@ import { User } from 'src/app/models/User';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  showExtended: boolean = true;
+  loaded: boolean = false;
 
   constructor() {}
 
@@ -39,24 +41,27 @@ export class UsersComponent implements OnInit {
         firstName: 'Tristan',
         lastName: 'Dumbey',
         age: 25,
-        address: {
-          street: '9451621 mills Drive',
-          city: 'Quebec',
-          province: 'QC',
-          postalCode: 'B0E1B0',
-        },
+        // address: {
+        //   street: '9451621 mills Drive',
+        //   city: 'Quebec',
+        //   province: 'QC',
+        //   postalCode: 'B0E1B0',
+        // },
       },
     ];
+    // this.showExtended = false;
+    this.loaded = true;
+
     this.addUser({
       firstName: 'David',
       lastName: 'Jackson ',
       age: 99,
-      address: {
-        street: '9451621 mills Drive',
-        city: 'Calgary',
-        province: 'AB',
-        postalCode: 'B0E1B0',
-      },
+      // address: {
+      //   street: '9451621 mills Drive',
+      //   city: 'Calgary',
+      //   province: 'AB',
+      //   postalCode: 'B0E1B0',
+      // },
     });
   }
 
