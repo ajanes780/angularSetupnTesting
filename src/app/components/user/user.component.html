@@ -1,4 +1,4 @@
-<h1>Hello {{ firstName }} {{ lastName }}</h1>
+<h1>Hello {{ user.firstName }} {{ user.lastName }}</h1>
 <h3>
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quas
   animi inventore incidunt neque quod consectetur distinctio laborum? Laborum
@@ -7,10 +7,10 @@
 </h3>
 
 <ul>
-  <li>{{ age }}</li>
+  <li>{{ user.age }}</li>
   <li>Address:</li>
 
-  <li>{{ address.street }}</li>
-  <li>{{ address.city }}</li>
-  <li>{{ address.province }}</li>
+  <li>{{ user.address.street }}</li>
+  <li>{{ user.address.city }}</li>
+  <li>{{ user.address.province }}</li>
 </ul>
