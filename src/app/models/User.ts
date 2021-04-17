@@ -8,4 +8,5 @@ export interface User {
     province?: string;
     postalCode?: string;
   };
+  image?: string;
 }

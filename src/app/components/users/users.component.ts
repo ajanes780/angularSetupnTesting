@@ -10,7 +10,7 @@ export class UsersComponent implements OnInit {
   users: User[];
   showExtended: boolean = true;
   loaded: boolean = false;
-
+  enableAdd: boolean = true;
   constructor() {}
 
   ngOnInit() {
@@ -25,6 +25,7 @@ export class UsersComponent implements OnInit {
           province: 'Nova Scotia',
           postalCode: 'B0E1B0',
         },
+        image: 'https://placekitten.com/640/360',
       },
       {
         firstName: 'Kevin',
@@ -36,33 +37,35 @@ export class UsersComponent implements OnInit {
           province: 'Ont',
           postalCode: 'B0E1B0',
         },
+        image: 'https://placekitten.com/640/360',
       },
       {
         firstName: 'Tristan',
         lastName: 'Dumbey',
         age: 25,
-        // address: {
-        //   street: '9451621 mills Drive',
-        //   city: 'Quebec',
-        //   province: 'QC',
-        //   postalCode: 'B0E1B0',
-        // },
+        address: {
+          street: '9451621 mills Drive',
+          city: 'Quebec',
+          province: 'QC',
+          postalCode: 'B0E1B0',
+        },
+        image: 'https://placekitten.com/640/360',
       },
     ];
     // this.showExtended = false;
     this.loaded = true;
 
-    this.addUser({
-      firstName: 'David',
-      lastName: 'Jackson ',
-      age: 99,
-      // address: {
-      //   street: '9451621 mills Drive',
-      //   city: 'Calgary',
-      //   province: 'AB',
-      //   postalCode: 'B0E1B0',
-      // },
-    });
+    // this.addUser({
+    //   firstName: 'David',
+    //   lastName: 'Jackson ',
+    //   age: 99,
+    //   address: {
+    //     street: '9451621 mills Drive',
+    //     city: 'Calgary',
+    //     province: 'AB',
+    //     postalCode: 'B0E1B0',
+    //   },
+    // });
   }
 
   addUser(user: User) {
