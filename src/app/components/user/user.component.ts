@@ -7,16 +7,21 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
   // properties
-  firstName = 'John';
-  lastName = ' Doe';
-  age = 40;
+  firstName: string;
+  lastName: string;
+  age: number;
+  address;
 
   //Methods that are run at the time the instance is created
   constructor() {
-    this.sayHello();
-    console.log(this.age);
-    this.hasBirthday();
-    console.log(this.age);
+    this.firstName = 'John';
+    this.lastName = 'Green Wood';
+    this.age = 34;
+    this.address = {
+      street: '50 main st',
+      city: 'Halifax',
+      province: 'Nova Scotia',
+    };
   }
 
   sayHello() {
