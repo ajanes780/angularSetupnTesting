@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 
 @Component({
@@ -6,12 +6,14 @@ import { User } from '../../models/User';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.style.scss'],
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
   // properties
   user: User;
 
   //Methods that are run at the time the instance is created
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     this.user = {
       firstName: 'Rob',
       lastName: 'Mathews',
