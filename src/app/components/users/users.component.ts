@@ -11,6 +11,7 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   loaded: boolean = false;
   enableAdd: boolean = true;
+
   constructor() {}
 
   ngOnInit() {
@@ -25,7 +26,10 @@ export class UsersComponent implements OnInit {
           province: 'Nova Scotia',
           postalCode: 'B0E1B0',
         },
-        image: 'https://placekitten.com/640/360',
+
+        isActive: true,
+
+        registered: new Date('01/02/2018 08:30:00'),
       },
       {
         firstName: 'Kevin',
@@ -37,7 +41,10 @@ export class UsersComponent implements OnInit {
           province: 'Ont',
           postalCode: 'B0E1B0',
         },
-        image: 'https://placekitten.com/640/360',
+
+        isActive: false,
+
+        registered: new Date('05/17/2019 08:30:00'),
       },
       {
         firstName: 'Tristan',
@@ -49,26 +56,22 @@ export class UsersComponent implements OnInit {
           province: 'QC',
           postalCode: 'B0E1B0',
         },
-        image: 'https://placekitten.com/640/360',
+
+        isActive: true,
+
+        registered: new Date('01/11/2021 08:30:00'),
       },
     ];
     // this.showExtended = false;
     this.loaded = true;
-
-    // this.addUser({
-    //   firstName: 'David',
-    //   lastName: 'Jackson ',
-    //   age: 99,
-    //   address: {
-    //     street: '9451621 mills Drive',
-    //     city: 'Calgary',
-    //     province: 'AB',
-    //     postalCode: 'B0E1B0',
-    //   },
-    // });
   }
 
   addUser(user: User) {
     this.users.push(user);
+  }
+
+  fireEvent(e) {
+    this.addUser({ firstName: 'Bob', lastName: 'Vela', isActive: true });
+    this.showExtended = !this.showExtended;
   }
 }
