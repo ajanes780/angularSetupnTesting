@@ -1,4 +1,6 @@
+import { R3BoundTarget } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { EmailValidator } from '@angular/forms';
 import { User } from 'src/app/models/User';
 
 @Component({
@@ -8,9 +10,16 @@ import { User } from 'src/app/models/User';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  user: User = {
+    firstName: '',
+    lastName: '',
+    email: '',
+  };
   showExtended: boolean = true;
   loaded: boolean = false;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
+  hide: boolean = true;
+  showUserForm: boolean = false;
 
   constructor() {}
 
@@ -19,14 +28,8 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Rob',
         lastName: 'Mathews',
-        age: 45,
-        address: {
-          street: '516512 Fowens Drive',
-          city: 'Baddeck',
-          province: 'Nova Scotia',
-          postalCode: 'B0E1B0',
-        },
-
+        email: 'rob@gmail.com',
+        hide: true,
         isActive: true,
 
         registered: new Date('01/02/2018 08:30:00'),
@@ -34,30 +37,20 @@ export class UsersComponent implements OnInit {
       {
         firstName: 'Kevin',
         lastName: 'Johnson',
-        age: 91,
-        address: {
-          street: ' 5651 Crown Drive',
-          city: 'Toronto',
-          province: 'Ont',
-          postalCode: 'B0E1B0',
-        },
+        email: 'kevin@gmail.com',
 
         isActive: false,
+        hide: true,
 
         registered: new Date('05/17/2019 08:30:00'),
       },
       {
         firstName: 'Tristan',
         lastName: 'Dumbey',
-        age: 25,
-        address: {
-          street: '9451621 mills Drive',
-          city: 'Quebec',
-          province: 'QC',
-          postalCode: 'B0E1B0',
-        },
+        email: 'tristan@yahoo.com',
 
         isActive: true,
+        hide: true,
 
         registered: new Date('01/11/2021 08:30:00'),
       },
@@ -66,12 +59,33 @@ export class UsersComponent implements OnInit {
     this.loaded = true;
   }
 
-  addUser(user: User) {
-    this.users.push(user);
+  // addUser(user: User) {
+  //   this.users.unshift(this.user);
+  //   this.user.isActive = true;
+  //   this.user.registered = new Date();
+  //   this.user = {
+  //     firstName: '',
+  //     lastName: '',
+  //     email: '',
+  //   };
+  // }
+  // fireEvent(e) {
+  //   this.addUser({ firstName: 'Bob', lastName: 'Vela', isActive: true });
+  //   this.showExtended = !this.showExtended;
+  // }
+
+  toggleHide(user: User) {
+    user.hide = !user.hide;
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.users.unshift(this.user);
+    this.user.isActive = true;
+    this.user.registered = new Date();
   }
 
   fireEvent(e) {
-    this.addUser({ firstName: 'Bob', lastName: 'Vela', isActive: true });
-    this.showExtended = !this.showExtended;
+    console.log(e.target.value);
   }
 }

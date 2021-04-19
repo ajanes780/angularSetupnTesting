@@ -17,13 +17,14 @@ export class UserComponent implements OnInit {
     this.user = {
       firstName: 'Rob',
       lastName: 'Mathews',
-      age: 45,
-      address: {
-        street: 'Fowens Drive',
-        city: 'Baddeck',
-        province: 'Nova Scotia',
-        postalCode: 'B0E1B0',
-      },
+      email: '',
+      // age: 45,
+      // address: {
+      //   street: 'Fowens Drive',
+      //   city: 'Baddeck',
+      //   province: 'Nova Scotia',
+      //   postalCode: 'B0E1B0',
+      // },
     };
   }
 }
