@@ -1,5 +1,5 @@
 import { R3BoundTarget } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
 import { User } from 'src/app/models/User';
 
@@ -20,6 +20,7 @@ export class UsersComponent implements OnInit {
   enableAdd: boolean = false;
   hide: boolean = true;
   showUserForm: boolean = false;
+  @ViewChild('userForm') form: any;
 
   constructor() {}
 
@@ -78,11 +79,17 @@ export class UsersComponent implements OnInit {
     user.hide = !user.hide;
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    this.users.unshift(this.user);
-    this.user.isActive = true;
-    this.user.registered = new Date();
+  onSubmit({ value, valid }: { value: User; valid: boolean }) {
+    if (!valid) {
+      console.log('form is not valid');
+    } else {
+      this.users.unshift(value);
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+
+      this.form.reset();
+    }
   }
 
   fireEvent(e) {

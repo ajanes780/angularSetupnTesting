@@ -3,37 +3,74 @@
 </button>
 <h2>Add User</h2>
 <div class="card card-body mb-3" *ngIf="showUserForm">
-  <form (submit)="onSubmit($event)">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label>First Name</label>
       <input
         type="text"
         [(ngModel)]="user.firstName"
+        [ngClass]="{
+          'is-invalid': userFirstName.errors && userFirstName.touched
+        }"
         class="form-control"
         name="firstName"
+        #userFirstName="ngModel"
+        required
+        minlength="2"
       />
+      <div [hidden]="!userFirstName.errors?.required" class="invalid-feedback">
+        First Name Required
+      </div>
+      <div [hidden]="!userFirstName.errors?.minlength" class="invalid-feedback">
+        Must Have at least 2 characters
+      </div>
     </div>
+
     <div class="form-group">
       <label>Last Name</label>
       <input
         type="text"
         class="form-control"
         [(ngModel)]="user.lastName"
+        [ngClass]="{
+          'is-invalid': userLastName.errors && userLastName.touched
+        }"
         name="lastName"
+        #userLastName="ngModel"
+        required
+        minlength="2"
       />
+      <div [hidden]="!userLastName.errors?.required" class="invalid-feedback">
+        Last Name Required
+      </div>
+      <div [hidden]="!userLastName.errors?.minlength" class="invalid-feedback">
+        Must Have at least 2 characters
+      </div>
     </div>
+
     <div class="form-group">
       <label>Email</label>
       <input
         type="email"
         class="form-control"
         [(ngModel)]="user.email"
+        [ngClass]="{ 'is-invalid': userEmail.errors && userEmail.touched }"
         name="email"
+        #userEmail="ngModel"
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+        required
       />
-    </div>
 
+      <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">
+        Email Is Required
+      </div>
+
+      <div [hidden]="!userLastName.errors?.pattern" class="invalid-feedback">
+        Email is not valid
+      </div>
+    </div>
     <button
-      [disabled]="user.firstName == '' || user.lastName == ''"
+      [disabled]="!userForm.form.valid"
       class="btn btn-block bg-success mb-3"
     >
       Add New User
